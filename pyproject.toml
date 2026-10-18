@@ -83,7 +83,7 @@ filterwarnings = [
 
 [tool.coverage.run]
 branch = true
-source = ["jinja2", "tests"]
+source = ["itsdangerous", "tests"]
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]

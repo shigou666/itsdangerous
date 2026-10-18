@@ -326,10 +326,17 @@ class Serializer(t.Generic[_TSerialized]):
         f.write(self.dumps(obj, salt))
 
     def loads(
-        self, s: str | bytes, salt: str | bytes | None = None, **kwargs: t.Any
+        self,
+        s: str | bytes,
+        salt: str | bytes | None = None,
     ) -> t.Any:
         """Reverse of :meth:`dumps`. Raises :exc:`.BadSignature` if the
         signature validation fails.
+
+        Unexpected keyword arguments are not accepted, so passing a
+        keyword only supported by a subclass, such as ``max_age`` for
+        :class:`~itsdangerous.timed.TimedSerializer`, raises a
+        ``TypeError``.
         """
         s = want_bytes(s)
         last_exception = None
